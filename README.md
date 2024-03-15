@@ -1,15 +1,16 @@
-# ElastiDash
+# Origem da Proposta
 
-ElastiDash é uma plataforma para visualização de dados em tempo real integrada ao Elasticsearch. Este projeto permite criar dashboards interativos que fornecem insights instantâneos sobre seus dados armazenados no Elasticsearch.
+Este projeto é parte de um experimento desenvolvido para a disciplina de Tópicos Especiais em Bancos de Dados, com foco em dados não estruturados. O objetivo principal é explorar e analisar dados não estruturados usando o Elasticsearch e criar um dashboard interativo para visualização dos resultados.
 
-Com ElastiDash, você pode:
+O projeto utiliza dois conjuntos de dados como base:
 
-- Criar painéis dinâmicos e personalizados para monitorar métricas importantes.
-- Visualizar dados em tempo real e acompanhar tendências ao longo do tempo.
-- Explorar insights detalhados com gráficos interativos e flexíveis.
-- Integrar facilmente com seus dados existentes no Elasticsearch.
+1. [Brazilian E-commerce Dataset por Olist](https://gamma.app/docs/Brazilian-E-commerce-DataSet-por-Olist-sievdfhkbil3v1e?mode=doc): Este conjunto de dados contém informações sobre pedidos de e-commerce no Brasil, incluindo dados de produtos, vendedores, clientes e avaliações de clientes. Ele será usado para demonstrar a eficácia do Elasticsearch na análise de dados não estruturados.
 
-Não importa se você está gerenciando um ambiente de negócios complexo ou monitorando uma aplicação em tempo real, ElastiDash é a solução ideal para transformar seus dados em insights acionáveis.
+2. [Eficiência do Elasticsearch na Análise de Dados](https://gamma.app/docs/Eficiencia-do-Elasticsearch-na-Analise-de-Dados-36fc7s8xuhqq4um?mode=doc): Este documento detalha a proposta do projeto e destaca a importância do Elasticsearch na análise de dados não estruturados. Ele serve como base teórica e conceitual para o experimento.
+
+## O ElastiDash
+
+ElastiDash é a plataforma desenvolvida neste projeto, permitindo a visualização dos dados não estruturados em tempo real usando Elasticsearch. Com ElastiDash, é possível criar dashboards interativos para monitorar métricas importantes, acompanhar tendências ao longo do tempo e explorar insights detalhados com gráficos flexíveis.
 
 ## Como Instalar e Executar
 
@@ -40,9 +41,9 @@ pip install -r requirements.txt
 Após a instalação das dependências, você pode executar o projeto com o seguinte comando:
 
 ```bash
-python Dash.py
+python dash.py
 ```
 
 Isso iniciará o servidor local e você poderá acessar o aplicativo em seu navegador através do endereço [http://localhost:8050](http://localhost:8050).
 
-
+Divirta-se explorando os dados em tempo real com ElastiDash!

@@ -1,13 +1,51 @@
+## Importações ##
+# from elasticsearch import Elasticsearch  # Parte com integração do Elasticsearch
+
 import pandas as pd
 import json 
 import matplotlib.pyplot as plt
 import seaborn as sns
-from wordcloud import WordCloud
+import dash
+import dash_bootstrap_components as dbc
+from dash import dcc, html
+from dash.dependencies import Input, Output
+import os
 
-# Restante do seu código...
+## Parte com integração do Elasticsearch ##
+"""
+# Função para consultar o Elasticsearch e obter os dados atualizados
+def consultar_elasticsearch():
+    # Conecte-se ao Elasticsearch
+    es = Elasticsearch()
 
-# Caminho para o arquivo JSON
-caminho_arquivo = r'C:\Users\rayss\Desktop\elasticsearch-main\data_non_structured.json'
+    # Consulta para obter os dados do Elasticsearch
+    resultados = es.search(index='seu_indice_aqui', body={'query': {'match_all': {}}})
+
+    # Processar os resultados da consulta e retornar os dados relevantes
+    dados = []
+    for hit in resultados['hits']['hits']:
+        documento = hit['_source']
+        dados.append({
+            'order_status': documento.get('order_status'),
+            'purchase_timestamp': documento.get('purchase_timestamp'),
+            'review_score': documento.get('review', {}).get('review_score'),
+            'review_comment_message': documento.get('review', {}).get('review_comment_message')
+        })
+
+    return dados
+
+# Atualizar os dados do DataFrame com os dados do Elasticsearch
+def atualizar_dados_elasticsearch():
+    dados_elasticsearch = consultar_elasticsearch()
+    return pd.DataFrame(dados_elasticsearch)
+"""
+
+## Código existente ##
+# Obter o diretório atual do arquivo Python
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+
+# Caminho para o arquivo JSON (usando um caminho relativo)
+caminho_arquivo = os.path.join(diretorio_atual, 'data_non_structured.json')
 
 # Lista para armazenar os dados processados
 data = []
@@ -40,45 +78,38 @@ df = pd.DataFrame(data)
 # Configurar o estilo dos gráficos
 sns.set(style="whitegrid")
 
-# Gráfico de Pizza para a Distribuição dos Status dos Pedidos
-plt.figure(figsize=(12, 6))
-plt.subplot(2, 2, 1)
-status_counts = df['order_status'].value_counts()
-plt.pie(status_counts, labels=status_counts.index, autopct='%1.1f%%', colors=['lightcoral', 'lightgreen', 'lightblue'])
-plt.title('Distribuição dos Status dos Pedidos')
+# Inicializar a aplicação Dash com Bootstrap
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Gráfico de Barras para a Segmentação de Clientes com Base nas Pontuações de Revisão
-plt.subplot(2, 2, 2)
-df['review_score'] = pd.to_numeric(df['review_score'], errors='coerce')
-df['segmento_cliente'] = pd.cut(df['review_score'], bins=[-1, 3, 5], labels=['Baixa Pontuação', 'Alta Pontuação'], right=False)
-segmento_counts = df['segmento_cliente'].value_counts()
-plt.bar(segmento_counts.index, segmento_counts, color=['lightcoral', 'lightgreen'])
-plt.title('Segmentação de Clientes com Base nas Pontuações de Revisão')
+# Layout do Dashboard com Bootstrap
+app.layout = dbc.Container(
+    [
+        html.H1("ElastiDash em Tempo Real", className="display-4", style={'font-family': 'Arial'}),
+        dcc.Graph(id='status-pedidos'),
+        dcc.Graph(id='segmentacao-clientes'),
+        dcc.Graph(id='atividade-tempo'),
+        dcc.Graph(id='distribuicao-revisao'),
+        dcc.Interval(id='interval-component', interval=1000, n_intervals=0)
+    ],
+    fluid=True
+)
 
-# Gráfico de Linha para Análise Temporal
-plt.subplot(2, 2, 3)
-df['purchase_timestamp'] = pd.to_datetime(df['purchase_timestamp'])
-df['mes'] = df['purchase_timestamp'].dt.to_period("M")
-temporal_counts = df['mes'].value_counts().sort_index()
-temporal_counts.plot(kind='line', marker='o', color='lightcoral')
-plt.title('Atividade de Compra ao Longo do Tempo')
-plt.xlabel('Mês')
-plt.ylabel('Número de Compras')
+# Callbacks para atualizar os gráficos
+@app.callback(
+    [Output('status-pedidos', 'figure'),
+     Output('segmentacao-clientes', 'figure'),
+     Output('atividade-tempo', 'figure'),
+     Output('distribuicao-revisao', 'figure')],
+    [Input('interval-component', 'n_intervals')]
+)
+def update_graphs(n):
+    # Gráficos atualizados aqui
+    pass
 
-# Histograma para a Distribuição das Pontuações de Revisão
-plt.subplot(2, 2, 4)
-plt.hist(df['review_score'].dropna(), bins=[1, 2, 3, 4, 5, 6], color='lightblue', edgecolor='black')
-plt.title('Distribuição das Pontuações de Revisão')
-plt.xlabel('Pontuação')
-plt.ylabel('Número de Avaliações')
+if __name__ == '__main__':
+    # Definindo o host e a porta
+    host = '127.0.0.1'
+    porta = 8050
 
-plt.tight_layout()
-
-# Nuvem de Palavras para Comentários
-wordcloud = WordCloud(width=800, height=400, background_color='white').generate(' '.join(df['review_comment_message'].dropna()))
-plt.figure(figsize=(10, 5))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.title('Nuvem de Palavras para Comentários')
-plt.axis('off')
-
-plt.show()
+    # Inicializando o aplicativo Dash
+    app.run_server(debug=True, host=host, port=porta)

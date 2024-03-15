@@ -4,7 +4,7 @@ Este projeto é parte de um experimento desenvolvido para a disciplina de Tópic
 
 O projeto utiliza dois conjuntos de dados como base:
 
-1. [Brazilian E-commerce Dataset por Olist](https://gamma.app/docs/Brazilian-E-commerce-DataSet-por-Olist-sievdfhkbil3v1e?mode=doc): Este conjunto de dados contém informações sobre pedidos de e-commerce no Brasil, incluindo dados de produtos, vendedores, clientes e avaliações de clientes. Ele será usado para demonstrar a eficácia do Elasticsearch na análise de dados não estruturados.
+1. [Brazilian E-commerce Dataset por Olist](https://gamma.app/docs/Brazilian-E-commerce-DataSet-por-Olist-sievdfhkbil3v1e?mode=doc): Este conjunto de dados contém informações sobre pedidos de e-commerce no Brasil, incluindo dados de produtos, vendedores, clientes e avaliações de clientes. Ele será usado como DataSet na análise de dados não estruturados.
 
 2. [Eficiência do Elasticsearch na Análise de Dados](https://gamma.app/docs/Eficiencia-do-Elasticsearch-na-Analise-de-Dados-36fc7s8xuhqq4um?mode=doc): Este documento detalha a proposta do projeto e destaca a importância do Elasticsearch na análise de dados não estruturados. Ele serve como base teórica e conceitual para o experimento.
 
@@ -46,4 +46,3 @@ python dash.py
 
 Isso iniciará o servidor local e você poderá acessar o aplicativo em seu navegador através do endereço [http://localhost:8050](http://localhost:8050).
 
-Divirta-se explorando os dados em tempo real com ElastiDash!

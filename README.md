@@ -46,3 +46,6 @@ python Dash.py
 
 Isso iniciará o servidor local e você poderá acessar o ElastiDash em seu navegador.
 
+```bashe
+Ex.: "Dash is running on http://127.0.0.1:8050/"
+```

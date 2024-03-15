@@ -40,7 +40,7 @@ pip install -r requirements.txt
 Após a instalação das dependências, você pode executar o projeto com o seguinte comando:
 
 ```bash
-python dash.py
+python Dash.py
 ```
 
 Isso iniciará o servidor local e você poderá acessar o aplicativo em seu navegador através do endereço [http://localhost:8050](http://localhost:8050).

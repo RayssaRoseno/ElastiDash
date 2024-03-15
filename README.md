@@ -44,5 +44,5 @@ Após a instalação das dependências, você pode executar o projeto com o segu
 python Dash.py
 ```
 
-Isso iniciará o servidor local e você poderá acessar o aplicativo em seu navegador.
+Isso iniciará o servidor local e você poderá acessar o ElastiDash em seu navegador.
 

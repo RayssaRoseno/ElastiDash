@@ -1,4 +1,4 @@
-# Origem da Proposta
+# Origem do Projeto
 
 Este projeto é parte de um experimento desenvolvido para a disciplina de Tópicos Especiais em Bancos de Dados, com foco em dados não estruturados. O objetivo principal é explorar e analisar dados não estruturados usando o Elasticsearch e criar um dashboard interativo para visualização dos resultados.
 

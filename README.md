@@ -28,17 +28,24 @@ Clone este repositório para o seu ambiente local usando o seguinte comando:
 git clone https://github.com/RayssaRoseno/ElastiDash.git
 ```
 
-### Instalar Dependências
+## Dependências
 
-Navegue até o diretório do projeto e instale as dependências usando o seguinte comando:
+Certifique-se de ter as seguintes bibliotecas Python instaladas:
+
+- pandas
+- matplotlib
+- seaborn
+- dash
+- dash-bootstrap-components
+
+Você pode instalá-las executando o seguinte comando:
 
 ```bash
-pip install -r requirements.txt
+pip install pandas matplotlib seaborn dash dash-bootstrap-components
 ```
+### Executar o ElastiDash
 
-### Executar o Projeto
-
-Após a instalação das dependências, você pode executar o projeto com o seguinte comando:
+Após a instalação das dependências, você pode executar com o seguinte comando:
 
 ```bash
 python Dash.py
